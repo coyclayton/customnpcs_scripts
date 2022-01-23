@@ -1,6 +1,8 @@
 
 function init(e) {
     print("Token Dispenser Online");
+    e.block.setModel("minecraft:observer");
+    print(e.block.setRotation(0,90,0));
 }
 
 var bookmgr = {};
@@ -23,7 +25,11 @@ function interact(e) {
             var todayObj = new Date(formatDate(new Date()));
             var tomorrowObj = new Date( new Date().getTime() + (86400*1000));
             var todayString = formatDate(todayObj);
-            var goodTilObj = new Date(tags.getLong("goodUntil"));
+            var gtt = tags.getLong("goodUntil") + 0;
+            var goodTilObj = new Date(gtt);
+            print(tags.getLong('goodUntil'));
+            print(goodTilObj.getTime());
+            print(todayObj.getTime());
             if (todayObj.getTime() > goodTilObj.getTime()) {
                 e.player.message("Your pass has expired.  We hope you enjoyed your stay.  Come again soon!");
                 return;

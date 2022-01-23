@@ -66,8 +66,6 @@ dbm.set_kvm = function(kvmkey, kvmdata, isNew) {
     }
 }
 
-
-
 function interact(e) {
     e.setCanceled(true);
     e.player.message(JSON.stringify(dbm.get_kvm("tester")));
