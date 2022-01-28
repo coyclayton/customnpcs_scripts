@@ -1,16 +1,46 @@
 monitor = peripheral.find("monitor");
 peripheral.find('modem', rednet.open);
+height = 33;
+width = 61;
 running = true;
-os.setComputerLabel("BeamController")
-myFilename = "tower_a"
+os.setComputerLabel("JumboTronControler")
+myFilename = "jumbotron"
 versionID = "1.1.0"
 
+function writeColor(color, startLine, endLine)
+    paintutils.drawFilledBox(1, startLine, width, endLine, color)
+end
+
+function monitorReset() 
+    monitor.setBackgroundColor(colors.black);
+    monitor.clear();
+end
+
+function colorWipeDown(color, speed)
+    local y = 1;
+    while (y <= height) 
+    do
+        paintutils.drawFilledBox(1,y,width,y,color)
+        sleep(speed)
+        y = y+1
+    end
+end
+
+function colorWipeLeft(color, speed) 
+    local x = 1;
+    while (x <= width)
+    do
+        paintutils.drawFilledBox(x,0,x,height,color)
+        sleep(speed)
+        x = x+1
+    end
+end
 
 function runScene(cue)
     term.clear()
     term.setCursorPos(1,1)
     term.write("Executing Cue: "..cue)
-    os.setComputerLabel("LTC @ Cue :" .. cue)
+    os.setComputerLabel("Jumbo @ Cue :" .. cue)
     term.redirect(monitor)
     if (cue == 0) then
         monitorReset();
@@ -60,7 +90,7 @@ function startSystem()
 end
 
 term.setCursorPos(1,2)
-term.write("BeaconBeam Projector Control(c)")
+term.write("Staring JumboTronCtl(c)")
 term.write("Show Version: "..versionID)
 runScene(-1)
 runScene(0)
