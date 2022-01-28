@@ -1,10 +1,40 @@
 monitor = peripheral.find("monitor");
 peripheral.find('modem', rednet.open);
+height = 40;
+width = 7;
 running = true;
-os.setComputerLabel("LightTowerCtl")
+os.setComputerLabel("LightTowerControler")
 myFilename = "tower_a"
 versionID = "1.1.0"
 
+function writeColor(color, startLine, endLine)
+    paintutils.drawFilledBox(1, startLine, 7, endLine, color)
+end
+
+function monitorReset() 
+    monitor.setBackgroundColor(colors.black);
+    monitor.clear();
+end
+
+function colorWipeDown(color, speed)
+    local y = 1;
+    while (y <= 40) 
+    do
+        paintutils.drawFilledBox(1,y,7,y,color)
+        sleep(speed)
+        y = y+1
+    end
+end
+
+function colorWipeLeft(color, speed) 
+    local x = 1;
+    while (x <= 7)
+    do
+        paintutils.drawFilledBox(x,0,x,40,color)
+        sleep(speed)
+        x = x+1
+    end
+end
 
 function runScene(cue)
     term.clear()
@@ -60,7 +90,7 @@ function startSystem()
 end
 
 term.setCursorPos(1,2)
-term.write("LightTower Control(c)")
+term.write("Staring LightTower(c)")
 term.write("Show Version: "..versionID)
 runScene(-1)
 runScene(0)
