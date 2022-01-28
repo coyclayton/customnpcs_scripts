@@ -1,7 +1,7 @@
 monitor = peripheral.find("monitor");
 peripheral.find('modem', rednet.open);
 running = true;
-os.setComputerLabel("BeamController")
+os.setComputerLabel("LightTowerCtl")
 myFilename = "tower_a"
 versionID = "1.1.0"
 
@@ -60,7 +60,7 @@ function startSystem()
 end
 
 term.setCursorPos(1,2)
-term.write("BeaconBeam Projector Control(c)")
+term.write("LightTower Control(c)")
 term.write("Show Version: "..versionID)
 runScene(-1)
 runScene(0)
